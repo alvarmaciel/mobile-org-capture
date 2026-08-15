@@ -1,50 +1,96 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Informe de impacto de sincronización
+- Cambio de versión: 1.0.0 -> 1.0.1
+- Principios modificados:
+  - II. Publicar archivos atómicamente: el temporal DEBE crearse en el mismo
+    directorio que la ruta final.
+  - III. Destino Org solo por append: alcance acotado a operaciones del sistema;
+    la edición manual desde el editor queda fuera.
+  - VI. Ingesta sin red: alcance acotado al camino post-recepción; la recepción
+    de capturas desde el exterior queda fuera.
+- Secciones añadidas: ninguna
+- Secciones eliminadas: ninguna
+- TODO de seguimiento: ninguno
+-->
+# Constitución de Captura Móvil
 
-## Core Principles
+## Principios fundamentales
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Preservar capturas confirmadas
+Ninguna captura confirmada por la persona usuaria puede perderse. Ante la disyuntiva entre crear
+un duplicado y perder una captura confirmada, el sistema DEBE crear el duplicado.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Justificación: Un duplicado puede identificarse y tratarse después; una captura perdida no puede
+recuperarse.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+Lo violaría: Descartar, sobrescribir o dar por procesada una captura confirmada antes de retenerla
+de forma duradera.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### II. Publicar archivos atómicamente
+Ningún proceso puede leer un archivo a medio escribir. Toda publicación de un archivo DEBE
+escribir primero en un temporal, ejecutar `fsync` y renombrarlo atómicamente a su ruta final. 
+El temporal DEBE crearse en el mismo directorio que la ruta final.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+Justificación: La publicación atómica hace que cada archivo visible esté completo o no exista.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Lo violaría: Escribir directamente en la ruta final o exponer un archivo antes de sincronizar el
+temporal y renombrarlo atómicamente.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### III. Destino Org solo por append
+El sistema DEBE hacer crecer el archivo Org de destino solo mediante append. Ninguna operación del sistema 
+puede ordenar, reescribir ni borrar contenido preexistente. La edición manual del archivo por parte de la 
+persona usuaria desde su editor queda fuera de este alcance.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Justificación: Las escrituras solo por append preservan todo el registro previo de capturas ante
+fallos.
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+Lo violaría: Reordenar, reemplazar, truncar o eliminar cualquier contenido existente del archivo
+Org de destino.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### IV. Ingesta idempotente ante interrupciones
+La ingesta DEBE tolerar interrupciones. Reejecutar una ingesta interrumpida puede duplicar
+contenido, pero no DEBE perder una captura.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Justificación: El servicio corre en una Raspberry Pi, donde una interrupción de energía o del
+proceso no puede convertir una captura confirmada en pérdida de datos.
+
+Lo violaría: Marcar la ingesta como completa antes de su append duradero, u omitir una captura
+reintentada de un modo que pueda excluirla del archivo de destino.
+
+### V. Autorizar antes de procesar
+Solo el identificador de la persona usuaria autorizada puede escribir. La verificación de
+autorización DEBE ocurrir antes de cualquier procesamiento.
+
+Justificación: La verificación temprana impide que entradas no autorizadas afecten archivos o el
+estado de la ingesta.
+
+Lo violaría: Analizar, preparar, crear archivos o realizar cualquier otro procesamiento antes de
+verificar el identificador autorizado, o permitir escribir a otro identificador.
+
+### VI. Ingesta sin red
+El camino de ingesta —desde que una captura fue recibida hasta que quedó agregada al archivo Org 
+de destino— DEBE carecer de dependencias de red. La recepción de capturas desde el exterior queda 
+fuera de este alcance.
+
+Justificación: La durabilidad local de las capturas no puede depender de la disponibilidad de red, 
+especialmente con la conexión intermitente del sitio donde corre el servicio.
+
+Lo violaría: Requerir una solicitud de red, un servicio remoto o un recurso montado por red para 
+preparar, publicar o agregar una captura ya recibida. Por ejemplo, resolver el título de una URL 
+antes de escribir el heading.
+
+## Contexto operativo
+
+Este es un servicio personal de captura para una sola persona que opera en una Raspberry Pi.
+
+## Gobierno
+
+Esta constitución prevalece sobre cualquier práctica del proyecto que entre en conflicto. Las
+enmiendas DEBEN documentar el cambio propuesto, su efecto sobre los seis principios y el incremento
+de versión semántica resultante. Eliminar un principio o redefinirlo de forma incompatible exige
+un incremento MAYOR; añadir o ampliar materialmente el gobierno exige un incremento MENOR; las
+aclaraciones exigen un incremento de PARCHE. Todo cambio en el comportamiento de ingesta DEBE
+revisarse frente a los seis principios antes de aceptarse.
+
+**Version**: 1.0.1 | **Ratified**: 2026-08-15 | **Last Amended**: 2026-08-15
