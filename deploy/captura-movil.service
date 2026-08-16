@@ -1,0 +1,19 @@
+[Unit]
+Description=Captura Movil Telegram to Org service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=captura
+Group=captura
+WorkingDirectory=/opt/captura-movil
+EnvironmentFile=/etc/captura-movil/captura-movil.env
+ExecStart=/opt/captura-movil/.venv/bin/python -m captura_movil
+Restart=always
+RestartSec=10
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

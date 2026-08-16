@@ -7,8 +7,11 @@ tmp/
 __pycache__/
 *.py[cod]
 .venv/
+venv/
 .pytest_cache/
 .ruff_cache/
+dist/
+*.egg-info/
 
 # Secretos
 .env

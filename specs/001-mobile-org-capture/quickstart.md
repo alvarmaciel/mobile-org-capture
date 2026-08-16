@@ -43,3 +43,9 @@ to the repository.
 
 See [data-model.md](data-model.md) for state and configuration rules, and
 [telegram-bot.md](contracts/telegram-bot.md) for the user-facing protocol.
+
+## Validation Record
+
+The synthetic pytest suite covers the listed local queue, append, attachment, authorization,
+pending-status, time-zone, and systemd scenarios. Live Telegram and systemd installation remain
+operator validation steps because they require the external environment file and personal bot.

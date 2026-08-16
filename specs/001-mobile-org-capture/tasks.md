@@ -18,12 +18,12 @@
 
 **Purpose**: Initialize the Python project and reproducible local development environment.
 
-- [ ] T001 Create Python 3.11 project metadata and uv dependency groups in `pyproject.toml`
-- [ ] T002 Generate the committed resolved dependency lock in `uv.lock` from `pyproject.toml`
-- [ ] T003 [P] Create the package skeleton and module exports in `src/captura_movil/__init__.py`
-- [ ] T004 [P] Configure pytest test discovery and synthetic-fixture markers in `pyproject.toml`
-- [ ] T005 [P] Add ignore rules for virtual environments, systemd environment files, queue data, Org data, and artifacts in `.gitignore`
-- [ ] T006 [P] Create shared synthetic Telegram, filesystem, and time-zone fixtures in `tests/conftest.py`
+- [X] T001 Create Python 3.11 project metadata and uv dependency groups in `pyproject.toml`
+- [X] T002 Generate the committed resolved dependency lock in `uv.lock` from `pyproject.toml`
+- [X] T003 [P] Create the package skeleton and module exports in `src/captura_movil/__init__.py`
+- [X] T004 [P] Configure pytest test discovery and synthetic-fixture markers in `pyproject.toml`
+- [X] T005 [P] Add ignore rules for virtual environments, systemd environment files, queue data, Org data, and artifacts in `.gitignore`
+- [X] T006 [P] Create shared synthetic Telegram, filesystem, and time-zone fixtures in `tests/conftest.py`
 
 ---
 
@@ -34,18 +34,18 @@ user stories.
 
 **⚠️ CRITICAL**: Complete this phase before beginning any user story.
 
-- [ ] T007 Add a socket-blocking fixture for post-retention ingestion tests in `tests/conftest.py`
-- [ ] T008 Write configuration validation tests for required environment values, IANA time zones, positive limits, and local paths in `tests/unit/test_settings.py`
-- [ ] T009 Write atomic-publication and directory-fsync tests using temporary directories in `tests/unit/test_spool.py`
-- [ ] T010 Write append-only Org rendering and durable-append failure tests in `tests/unit/test_org.py`
-- [ ] T011 Write local ingestion retry, `pending/` to `done/` transition, offline isolation, and 100-capture failure-retention tests in `tests/integration/test_ingestion.py`
-- [ ] T012 Implement validated environment settings, including `CAPTURE_SWEEP_INTERVAL`, in `src/captura_movil/settings.py`
-- [ ] T013 Implement a reusable same-directory temporary-write, file-fsync, atomic-rename, and directory-fsync primitive in `src/captura_movil/atomic.py`
-- [ ] T014 Implement immutable UTF-8 manifest publication, pending enumeration, and same-filesystem move to `done/` in `src/captura_movil/spool.py`
-- [ ] T015 Implement TODO heading rendering with reception timestamps, verbatim body content, and abbreviation links in `src/captura_movil/org.py`
-- [ ] T016 Implement local-only serialized pending sweeps, append-before-done ordering, and retry behavior in `src/captura_movil/ingest.py`
-- [ ] T017 Implement capture and manifest value types with immutable receipt timestamp and artifact metadata in `src/captura_movil/capture.py`
-- [ ] T018 Create the service entry point that runs startup and periodic serialized ingestion sweeps in `src/captura_movil/__main__.py`
+- [X] T007 Add a socket-blocking fixture for post-retention ingestion tests in `tests/conftest.py`
+- [X] T008 Write configuration validation tests for required environment values, IANA time zones, positive limits, and local paths in `tests/unit/test_settings.py`
+- [X] T009 Write atomic-publication and directory-fsync tests using temporary directories in `tests/unit/test_spool.py`
+- [X] T010 Write append-only Org rendering and durable-append failure tests in `tests/unit/test_org.py`
+- [X] T011 Write local ingestion retry, `pending/` to `done/` transition, offline isolation, and 100-capture failure-retention tests in `tests/integration/test_ingestion.py`
+- [X] T012 Implement validated environment settings, including `CAPTURE_SWEEP_INTERVAL`, in `src/captura_movil/settings.py`
+- [X] T013 Implement a reusable same-directory temporary-write, file-fsync, atomic-rename, and directory-fsync primitive in `src/captura_movil/atomic.py`
+- [X] T014 Implement immutable UTF-8 manifest publication, pending enumeration, and same-filesystem move to `done/` in `src/captura_movil/spool.py`
+- [X] T015 Implement TODO heading rendering with reception timestamps, verbatim body content, and abbreviation links in `src/captura_movil/org.py`
+- [X] T016 Implement local-only serialized pending sweeps, append-before-done ordering, and retry behavior in `src/captura_movil/ingest.py`
+- [X] T017 Implement capture and manifest value types with immutable receipt timestamp and artifact metadata in `src/captura_movil/capture.py`
+- [X] T018 Create the service entry point that runs startup and periodic serialized ingestion sweeps in `src/captura_movil/__main__.py`
 
 **Checkpoint**: Configuration, durable queue, append-only inbox writer, and local retry path are
 ready. No completed ingestion depends on network access.
@@ -63,16 +63,16 @@ leaves the manifest pending without an incorporation confirmation.
 
 ### Tests for User Story 1
 
-- [ ] T019 [P] [US1] Write text and URL normalization tests, including empty first line and verbatim link preservation, in `tests/unit/test_capture.py`
-- [ ] T020 [P] [US1] Write authorized and unauthorized text-update contract tests in `tests/contract/test_telegram_bot.py`
-- [ ] T021 [P] [US1] Write 100-capture end-to-end tests for retained-before-incorporated confirmation, title/body preservation, and inbox failure in `tests/integration/test_text_capture.py`
+- [X] T019 [P] [US1] Write text and URL normalization tests, including empty first line and verbatim link preservation, in `tests/unit/test_capture.py`
+- [X] T020 [P] [US1] Write authorized and unauthorized text-update contract tests in `tests/contract/test_telegram_bot.py`
+- [X] T021 [P] [US1] Write 100-capture end-to-end tests for retained-before-incorporated confirmation, title/body preservation, and inbox failure in `tests/integration/test_text_capture.py`
 
 ### Implementation for User Story 1
 
-- [ ] T022 [US1] Implement title/body normalization and manifest construction for text updates in `src/captura_movil/capture.py`
-- [ ] T023 [US1] Implement Telegram long-polling startup and chat-ID authorization before any update processing in `src/captura_movil/bot.py`
-- [ ] T024 [US1] Implement retained receipt and post-ingestion incorporation notifications without blocking the local ingestion path in `src/captura_movil/bot.py`
-- [ ] T025 [US1] Wire the bot polling lifecycle and local sweeper lifecycle into the service entry point in `src/captura_movil/__main__.py`
+- [X] T022 [US1] Implement title/body normalization and manifest construction for text updates in `src/captura_movil/capture.py`
+- [X] T023 [US1] Implement Telegram long-polling startup and chat-ID authorization before any update processing in `src/captura_movil/bot.py`
+- [X] T024 [US1] Implement retained receipt and post-ingestion incorporation notifications without blocking the local ingestion path in `src/captura_movil/bot.py`
+- [X] T025 [US1] Wire the bot polling lifecycle and local sweeper lifecycle into the service entry point in `src/captura_movil/__main__.py`
 
 **Checkpoint**: An authorized text or URL capture becomes an append-only TODO heading without using
 an editor or computer command. This is the MVP.
@@ -91,16 +91,16 @@ attachment.
 
 ### Tests for User Story 2
 
-- [ ] T026 [P] [US2] Write artifact filename normalization, uniqueness, abbreviation-link, and no-filename synthesis tests, including compressed photos without a Telegram filename, in `tests/unit/test_artifacts.py`
-- [ ] T027 [P] [US2] Write 50-capture attachment publication-before-manifest and atomic failure tests in `tests/integration/test_attachment_capture.py`
-- [ ] T028 [P] [US2] Write oversized attachment tests for rejection, caption retention, and heading notice in `tests/contract/test_telegram_attachments.py`
+- [X] T026 [P] [US2] Write artifact filename normalization, uniqueness, abbreviation-link, and no-filename synthesis tests, including compressed photos without a Telegram filename, in `tests/unit/test_artifacts.py`
+- [X] T027 [P] [US2] Write 50-capture attachment publication-before-manifest and atomic failure tests in `tests/integration/test_attachment_capture.py`
+- [X] T028 [P] [US2] Write oversized attachment tests for rejection, caption retention, and heading notice in `tests/contract/test_telegram_attachments.py`
 
 ### Implementation for User Story 2
 
-- [ ] T029 [US2] Implement attachment size preflight, normalized timestamp-prefixed names, and atomic artifact publication in `src/captura_movil/artifacts.py`
-- [ ] T030 [US2] Extend capture manifests and Org heading rendering for published artifact links and rejected-attachment notices in `src/captura_movil/capture.py` and `src/captura_movil/org.py`
-- [ ] T031 [US2] Handle authorized Telegram photos and documents by publishing the artifact before the referencing manifest in `src/captura_movil/bot.py`
-- [ ] T032 [US2] Implement the oversized-attachment reply while retaining and queuing any accompanying text or caption in `src/captura_movil/bot.py`
+- [X] T029 [US2] Implement attachment size preflight, normalized timestamp-prefixed names, and atomic artifact publication in `src/captura_movil/artifacts.py`
+- [X] T030 [US2] Extend capture manifests and Org heading rendering for published artifact links and rejected-attachment notices in `src/captura_movil/capture.py` and `src/captura_movil/org.py`
+- [X] T031 [US2] Handle authorized Telegram photos and documents by publishing the artifact before the referencing manifest in `src/captura_movil/bot.py`
+- [X] T032 [US2] Implement the oversized-attachment reply while retaining and queuing any accompanying text or caption in `src/captura_movil/bot.py`
 
 
 **Checkpoint**: Photos and PDFs produce unique local artifacts and Org abbreviation links; an
@@ -119,14 +119,14 @@ next response reports two. Verify an unauthorized request does no work and recei
 
 ### Tests for User Story 3
 
-- [ ] T033 [P] [US3] Write pending manifest count and title extraction tests without persisted state in `tests/unit/test_spool.py`
-- [ ] T034 [P] [US3] Write authorized and unauthorized `/pendientes` contract tests in `tests/contract/test_telegram_pending.py`
-- [ ] T035 [P] [US3] Write pending-count transition integration tests after successful and failed ingestion in `tests/integration/test_pending_status.py`
+- [X] T033 [P] [US3] Write pending manifest count and title extraction tests without persisted state in `tests/unit/test_spool.py`
+- [X] T034 [P] [US3] Write authorized and unauthorized `/pendientes` contract tests in `tests/contract/test_telegram_pending.py`
+- [X] T035 [P] [US3] Write pending-count transition integration tests after successful and failed ingestion in `tests/integration/test_pending_status.py`
 
 ### Implementation for User Story 3
 
-- [ ] T036 [US3] Implement pending manifest count and title listing from `pending/*.txt` in `src/captura_movil/spool.py`
-- [ ] T037 [US3] Implement the authorized `/pendientes` command and response formatting in `src/captura_movil/bot.py`
+- [X] T036 [US3] Implement pending manifest count and title listing from `pending/*.txt` in `src/captura_movil/spool.py`
+- [X] T037 [US3] Implement the authorized `/pendientes` command and response formatting in `src/captura_movil/bot.py`
 
 **Checkpoint**: The user can identify every locally retained but not incorporated capture from
 Telegram, with no added persistent state.
@@ -137,14 +137,14 @@ Telegram, with no added persistent state.
 
 **Purpose**: Complete native deployment, operational safety, and end-to-end validation.
 
-- [ ] T038 [P] Create the native restart-on-boot systemd unit with an external `EnvironmentFile` and absolute virtual-environment entry point in `deploy/captura-movil.service`
-- [ ] T039 [P] Create a secret-free environment-file template with every required setting in `deploy/captura-movil.env.example`
-- [ ] T040 [P] Write systemd unit and secret-exclusion tests in `tests/unit/test_systemd_unit.py`
-- [ ] T041 Document uv installation, external secret setup, systemd enablement, and recovery procedure in `README.md`
-- [ ] T042 Run all quickstart scenarios using synthetic fixtures and record any deviations in `specs/001-mobile-org-capture/quickstart.md`
-- [ ] T043 Run the complete synthetic pytest suite and fix failures in `tests/`
-- [ ] T044 [P] Document the Syncthing ignore pattern for temporary artifact files inside the Org artifact directory in `README.md`
-- [ ] T045 [P] Document the required `org-link-abbrev-alist` entry on every Emacs machine so artifact links resolve in `README.md`
+- [X] T038 [P] Create the native restart-on-boot systemd unit with an external `EnvironmentFile` and absolute virtual-environment entry point in `deploy/captura-movil.service`
+- [X] T039 [P] Create a secret-free environment-file template with every required setting in `deploy/captura-movil.env.example`
+- [X] T040 [P] Write systemd unit and secret-exclusion tests in `tests/unit/test_systemd_unit.py`
+- [X] T041 Document uv installation, external secret setup, systemd enablement, and recovery procedure in `README.md`
+- [X] T042 Run all quickstart scenarios using synthetic fixtures and record any deviations in `specs/001-mobile-org-capture/quickstart.md`
+- [X] T043 Run the complete synthetic pytest suite and fix failures in `tests/`
+- [X] T044 [P] Document the Syncthing ignore pattern for temporary artifact files inside the Org artifact directory in `README.md`
+- [X] T045 [P] Document the required `org-link-abbrev-alist` entry on every Emacs machine so artifact links resolve in `README.md`
 ---
 
 ## Dependencies & Execution Order
