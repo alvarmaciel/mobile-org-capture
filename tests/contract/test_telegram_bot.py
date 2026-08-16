@@ -2,10 +2,10 @@ from __future__ import annotations
 
 from types import SimpleNamespace
 
-from captura_movil.bot import CaptureBot
-from captura_movil.ingest import Ingester
-from captura_movil.settings import Settings
-from captura_movil.spool import Spool
+from mobile_org_capture.bot import CaptureBot
+from mobile_org_capture.ingest import Ingester
+from mobile_org_capture.settings import Settings
+from mobile_org_capture.spool import Spool
 
 
 def test_authorization_checks_chat_before_processing(runtime_paths):

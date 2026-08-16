@@ -3,9 +3,9 @@ from __future__ import annotations
 import asyncio
 from datetime import UTC, datetime
 
-from captura_movil.capture import Capture
-from captura_movil.ingest import Ingester
-from captura_movil.spool import Spool
+from mobile_org_capture.capture import Capture
+from mobile_org_capture.ingest import Ingester
+from mobile_org_capture.spool import Spool
 
 
 def test_one_hundred_text_captures_preserve_title_and_body(runtime_paths):

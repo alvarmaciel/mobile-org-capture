@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
-from captura_movil.capture import Capture
-from captura_movil.spool import Spool
+from mobile_org_capture.capture import Capture
+from mobile_org_capture.spool import Spool
 
 
 def test_pending_count_and_titles(runtime_paths):

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
-from captura_movil.artifacts import publish_artifact
+from mobile_org_capture.artifacts import publish_artifact
 
 
 def test_fifty_artifacts_are_published_without_temporary_files(runtime_paths):

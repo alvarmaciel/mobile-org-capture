@@ -20,7 +20,7 @@
 
 - [X] T001 Create Python 3.11 project metadata and uv dependency groups in `pyproject.toml`
 - [X] T002 Generate the committed resolved dependency lock in `uv.lock` from `pyproject.toml`
-- [X] T003 [P] Create the package skeleton and module exports in `src/captura_movil/__init__.py`
+- [X] T003 [P] Create the package skeleton and module exports in `src/mobile_org_capture/__init__.py`
 - [X] T004 [P] Configure pytest test discovery and synthetic-fixture markers in `pyproject.toml`
 - [X] T005 [P] Add ignore rules for virtual environments, systemd environment files, queue data, Org data, and artifacts in `.gitignore`
 - [X] T006 [P] Create shared synthetic Telegram, filesystem, and time-zone fixtures in `tests/conftest.py`
@@ -39,13 +39,13 @@ user stories.
 - [X] T009 Write atomic-publication and directory-fsync tests using temporary directories in `tests/unit/test_spool.py`
 - [X] T010 Write append-only Org rendering and durable-append failure tests in `tests/unit/test_org.py`
 - [X] T011 Write local ingestion retry, `pending/` to `done/` transition, offline isolation, and 100-capture failure-retention tests in `tests/integration/test_ingestion.py`
-- [X] T012 Implement validated environment settings, including `CAPTURE_SWEEP_INTERVAL`, in `src/captura_movil/settings.py`
-- [X] T013 Implement a reusable same-directory temporary-write, file-fsync, atomic-rename, and directory-fsync primitive in `src/captura_movil/atomic.py`
-- [X] T014 Implement immutable UTF-8 manifest publication, pending enumeration, and same-filesystem move to `done/` in `src/captura_movil/spool.py`
-- [X] T015 Implement TODO heading rendering with reception timestamps, verbatim body content, and abbreviation links in `src/captura_movil/org.py`
-- [X] T016 Implement local-only serialized pending sweeps, append-before-done ordering, and retry behavior in `src/captura_movil/ingest.py`
-- [X] T017 Implement capture and manifest value types with immutable receipt timestamp and artifact metadata in `src/captura_movil/capture.py`
-- [X] T018 Create the service entry point that runs startup and periodic serialized ingestion sweeps in `src/captura_movil/__main__.py`
+- [X] T012 Implement validated environment settings, including `CAPTURE_SWEEP_INTERVAL`, in `src/mobile_org_capture/settings.py`
+- [X] T013 Implement a reusable same-directory temporary-write, file-fsync, atomic-rename, and directory-fsync primitive in `src/mobile_org_capture/atomic.py`
+- [X] T014 Implement immutable UTF-8 manifest publication, pending enumeration, and same-filesystem move to `done/` in `src/mobile_org_capture/spool.py`
+- [X] T015 Implement TODO heading rendering with reception timestamps, verbatim body content, and abbreviation links in `src/mobile_org_capture/org.py`
+- [X] T016 Implement local-only serialized pending sweeps, append-before-done ordering, and retry behavior in `src/mobile_org_capture/ingest.py`
+- [X] T017 Implement capture and manifest value types with immutable receipt timestamp and artifact metadata in `src/mobile_org_capture/capture.py`
+- [X] T018 Create the service entry point that runs startup and periodic serialized ingestion sweeps in `src/mobile_org_capture/__main__.py`
 
 **Checkpoint**: Configuration, durable queue, append-only inbox writer, and local retry path are
 ready. No completed ingestion depends on network access.
@@ -69,10 +69,10 @@ leaves the manifest pending without an incorporation confirmation.
 
 ### Implementation for User Story 1
 
-- [X] T022 [US1] Implement title/body normalization and manifest construction for text updates in `src/captura_movil/capture.py`
-- [X] T023 [US1] Implement Telegram long-polling startup and chat-ID authorization before any update processing in `src/captura_movil/bot.py`
-- [X] T024 [US1] Implement retained receipt and post-ingestion incorporation notifications without blocking the local ingestion path in `src/captura_movil/bot.py`
-- [X] T025 [US1] Wire the bot polling lifecycle and local sweeper lifecycle into the service entry point in `src/captura_movil/__main__.py`
+- [X] T022 [US1] Implement title/body normalization and manifest construction for text updates in `src/mobile_org_capture/capture.py`
+- [X] T023 [US1] Implement Telegram long-polling startup and chat-ID authorization before any update processing in `src/mobile_org_capture/bot.py`
+- [X] T024 [US1] Implement retained receipt and post-ingestion incorporation notifications without blocking the local ingestion path in `src/mobile_org_capture/bot.py`
+- [X] T025 [US1] Wire the bot polling lifecycle and local sweeper lifecycle into the service entry point in `src/mobile_org_capture/__main__.py`
 
 **Checkpoint**: An authorized text or URL capture becomes an append-only TODO heading without using
 an editor or computer command. This is the MVP.
@@ -97,10 +97,10 @@ attachment.
 
 ### Implementation for User Story 2
 
-- [X] T029 [US2] Implement attachment size preflight, normalized timestamp-prefixed names, and atomic artifact publication in `src/captura_movil/artifacts.py`
-- [X] T030 [US2] Extend capture manifests and Org heading rendering for published artifact links and rejected-attachment notices in `src/captura_movil/capture.py` and `src/captura_movil/org.py`
-- [X] T031 [US2] Handle authorized Telegram photos and documents by publishing the artifact before the referencing manifest in `src/captura_movil/bot.py`
-- [X] T032 [US2] Implement the oversized-attachment reply while retaining and queuing any accompanying text or caption in `src/captura_movil/bot.py`
+- [X] T029 [US2] Implement attachment size preflight, normalized timestamp-prefixed names, and atomic artifact publication in `src/mobile_org_capture/artifacts.py`
+- [X] T030 [US2] Extend capture manifests and Org heading rendering for published artifact links and rejected-attachment notices in `src/mobile_org_capture/capture.py` and `src/mobile_org_capture/org.py`
+- [X] T031 [US2] Handle authorized Telegram photos and documents by publishing the artifact before the referencing manifest in `src/mobile_org_capture/bot.py`
+- [X] T032 [US2] Implement the oversized-attachment reply while retaining and queuing any accompanying text or caption in `src/mobile_org_capture/bot.py`
 
 
 **Checkpoint**: Photos and PDFs produce unique local artifacts and Org abbreviation links; an
@@ -125,8 +125,8 @@ next response reports two. Verify an unauthorized request does no work and recei
 
 ### Implementation for User Story 3
 
-- [X] T036 [US3] Implement pending manifest count and title listing from `pending/*.txt` in `src/captura_movil/spool.py`
-- [X] T037 [US3] Implement the authorized `/pendientes` command and response formatting in `src/captura_movil/bot.py`
+- [X] T036 [US3] Implement pending manifest count and title listing from `pending/*.txt` in `src/mobile_org_capture/spool.py`
+- [X] T037 [US3] Implement the authorized `/pendientes` command and response formatting in `src/mobile_org_capture/bot.py`
 
 **Checkpoint**: The user can identify every locally retained but not incorporated capture from
 Telegram, with no added persistent state.
@@ -137,8 +137,8 @@ Telegram, with no added persistent state.
 
 **Purpose**: Complete native deployment, operational safety, and end-to-end validation.
 
-- [X] T038 [P] Create the native restart-on-boot systemd unit with an external `EnvironmentFile` and absolute virtual-environment entry point in `deploy/captura-movil.service`
-- [X] T039 [P] Create a secret-free environment-file template with every required setting in `deploy/captura-movil.env.example`
+- [X] T038 [P] Create the native restart-on-boot systemd unit with an external `EnvironmentFile` and absolute virtual-environment entry point in `deploy/mobile-org-capture.service`
+- [X] T039 [P] Create a secret-free environment-file template with every required setting in `deploy/mobile-org-capture.env.example`
 - [X] T040 [P] Write systemd unit and secret-exclusion tests in `tests/unit/test_systemd_unit.py`
 - [X] T041 Document uv installation, external secret setup, systemd enablement, and recovery procedure in `README.md`
 - [X] T042 Run all quickstart scenarios using synthetic fixtures and record any deviations in `specs/001-mobile-org-capture/quickstart.md`

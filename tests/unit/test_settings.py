@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from captura_movil.settings import Settings
+from mobile_org_capture.settings import Settings
 
 
 def test_settings_accepts_complete_environment(runtime_paths):

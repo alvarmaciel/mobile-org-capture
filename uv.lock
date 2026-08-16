@@ -20,7 +20,7 @@ wheels = [
 ]
 
 [[package]]
-name = "captura-movil"
+name = "mobile-org-capture"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [

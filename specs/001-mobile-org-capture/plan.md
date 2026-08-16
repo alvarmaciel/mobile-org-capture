@@ -79,7 +79,7 @@ specs/001-mobile-org-capture/
 ### Source Code (repository root)
 
 ```text
-src/captura_movil/
+src/mobile_org_capture/
 ├── __main__.py              # Service entry point
 ├── bot.py                   # Telegram polling, authorization, commands, notifications
 ├── capture.py               # Message normalization and manifest construction
@@ -97,7 +97,7 @@ tests/
 └── fixtures/
 
 deploy/
-└── captura-movil.service    # Native systemd unit; no environment secrets
+└── mobile-org-capture.service    # Native systemd unit; no environment secrets
 
 pyproject.toml               # Project metadata, dependencies, requires-python = ">=3.11"
 uv.lock                      # Fully resolved, hashed lock file (committed)

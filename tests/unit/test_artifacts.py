@@ -4,7 +4,7 @@ from datetime import UTC, datetime
 
 import pytest
 
-from captura_movil.artifacts import publish_artifact
+from mobile_org_capture.artifacts import publish_artifact
 
 
 def test_artifact_uses_unique_normalized_name_and_abbreviation(runtime_paths):

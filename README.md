@@ -7,13 +7,13 @@ archivo Org. Requiere Python 3.11, `uv`, y systemd; no usa contenedores ni base 
 
 ```sh
 uv sync --frozen
-sudo install -m 600 deploy/captura-movil.env.example /etc/captura-movil/captura-movil.env
-sudo install -m 644 deploy/captura-movil.service /etc/systemd/system/captura-movil.service
+sudo install -m 600 deploy/mobile-org-capture.env.example /etc/mobile-org-capture/mobile-org-capture.env
+sudo install -m 644 deploy/mobile-org-capture.service /etc/systemd/system/mobile-org-capture.service
 sudo systemctl daemon-reload
-sudo systemctl enable --now captura-movil
+sudo systemctl enable --now mobile-org-capture
 ```
 
-Edite `/etc/captura-movil/captura-movil.env` con el token y chat ID reales. No copie secretos al
+Edite `/etc/mobile-org-capture/mobile-org-capture.env` con el token y chat ID reales. No copie secretos al
 repositorio. Tras un reinicio, systemd reinicia el bot y el barrido local procesa los manifiestos
 pendientes sin necesitar red.
 

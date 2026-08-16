@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
-from captura_movil.capture import Capture
+from mobile_org_capture.capture import Capture
 
 
 def test_first_line_is_title_and_links_are_verbatim():

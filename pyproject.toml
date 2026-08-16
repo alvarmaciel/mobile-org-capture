@@ -1,5 +1,5 @@
 [project]
-name = "captura-movil"
+name = "mobile-org-capture"
 version = "0.1.0"
 description = "Durable personal Telegram capture inbox for Org"
 requires-python = ">=3.11"

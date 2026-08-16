@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
-from captura_movil.capture import Capture
-from captura_movil.org import append_capture, render_heading
+from mobile_org_capture.capture import Capture
+from mobile_org_capture.org import append_capture, render_heading
 
 
 def test_append_never_rewrites_existing_inbox(runtime_paths):
