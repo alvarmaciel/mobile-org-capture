@@ -1,6 +1,6 @@
 # Feature Specification: Captura móvil al inbox Org
 
-**Feature Branch**: `001-captura-movil`
+**Feature Branch**: `001-mobile-org-capture`
 
 **Created**: 2026-08-15
 
@@ -92,6 +92,8 @@ pendientes para esa nota.
 - Si una persona no autorizada intenta enviar una nota, no se retiene, procesa ni incorpora nada.
 - Si ya existe contenido en el inbox, la incorporación de una nota no altera ni elimina dicho
   contenido.
+- Si un adjunto supera el tamaño máximo pero el mensaje trae caption, el texto se
+  retiene igual y la tarea deja constancia del adjunto descartado.
 
 ## Requirements *(mandatory)*
 
@@ -127,12 +129,15 @@ pendientes para esa nota.
   dentro de la carpeta de artefactos, y guardar un artefacto nunca DEBE
   reemplazar ni sobrescribir un artefacto existente.
 - **FR-015**: El sistema DEBE rechazar los adjuntos que superen un tamaño máximo
-  configurable e informar el rechazo a la persona que los envió, sin retenerlos
-  ni incorporarlos.
-- **FR-016**: La consulta de pendientes muestra un total actual y cuales son los títulos de los pendientes.
-- **FR-016**: El sistema DEBE registrar en la tarea el momento en que la captura
+  configurable e informar el rechazo a la persona que los envió. Si el mensaje
+  rechazado incluía texto o caption, el sistema DEBE retener e incorporar la
+  captura de texto, y la tarea resultante DEBE indicar que un adjunto fue
+  descartado por tamaño.
+- **FR-016**: El sistema DEBE incluir en la consulta de pendientes el título de
+  cada captura pendiente, además del total.
+- **FR-017**: El sistema DEBE registrar en la tarea el momento en que la captura
   fue recibida, no el momento en que fue incorporada al inbox.
-
+  
 ### Key Entities *(include if feature involves data)*
 
 - **Captura**: Nota enviada por la persona autorizada; incluye texto, enlaces, adjuntos y su estado
