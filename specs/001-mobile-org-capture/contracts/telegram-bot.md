@@ -14,7 +14,7 @@ file creation, download, ingestion, or pending-status response.
 | Text containing URL | Stored verbatim; no URL title lookup or substitution |
 | Photo with optional caption | Photo is published to artifacts first; caption is interpreted as title/body; heading contains an abbreviation link |
 | Document with optional caption | Document is published to artifacts first; caption is interpreted as title/body; heading contains an abbreviation link |
-| Attachment over `MAX_ATTACHMENT_BYTES` | Rejected with an error reply; no capture is retained |
+| Attachment over `MAX_ATTACHMENT_BYTES` | Rejected with an error reply before download; if the message included text or a caption, that text is retained and ingested, and the resulting heading records the discarded attachment |
 
 ## Confirmations
 

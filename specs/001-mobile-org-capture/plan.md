@@ -87,10 +87,12 @@ src/captura_movil/
 ├── ingest.py                # Local artifact-to-Org ingestion workflow
 ├── org.py                   # TODO heading rendering and append-only write
 ├── artifacts.py             # Attachment naming and atomic local publication
+├── atomic.py                # Same-directory temp write, fsync, rename, directory fsync
 └── settings.py               # Required environment validation and IANA time zone
 
 tests/
 ├── unit/
+├── cntract/
 ├── integration/
 └── fixtures/
 
