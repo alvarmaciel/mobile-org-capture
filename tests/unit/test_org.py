@@ -10,12 +10,12 @@ def test_append_never_rewrites_existing_inbox(runtime_paths):
     inbox = runtime_paths["inbox"]
     inbox.parent.mkdir(parents=True, exist_ok=True)
     inbox.write_text("* Existing\n", encoding="utf-8")
-    capture = Capture.create("Nueva\ncuerpo", 1, datetime.now(UTC))
+    capture = Capture.create("Nueva\ncuerpo", 1, datetime(2026, 10, 3, 22, 26, tzinfo=UTC))
     append_capture(inbox, capture)
     content = inbox.read_text(encoding="utf-8")
     assert content.startswith("* Existing\n")
     assert "* TODO Nueva" in content
-    assert capture.received_at in content
+    assert ":CAPTURED: [2026-10-03 Sat 22:26]" in content
     assert content.endswith("\n\n") 
 
 def test_body_line_starting_with_asterisk_is_escaped():

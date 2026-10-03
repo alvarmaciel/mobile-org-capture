@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime
 from pathlib import Path
 
 from .atomic import append_bytes
@@ -13,8 +14,14 @@ def _escape_body_line(line: str) -> str:
     return " " + line if line.startswith("*") else line
 
 
+def _org_timestamp(value: str) -> str:
+    received = datetime.fromisoformat(value)
+    weekday = ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")[received.weekday()]
+    return f"[{received:%Y-%m-%d} {weekday} {received:%H:%M}]"
+
+
 def render_heading(capture: Capture) -> str:
-    lines = [f"* TODO {capture.title}", ":PROPERTIES:", f":CAPTURED: {capture.received_at}", ":END:"]
+    lines = [f"* TODO {capture.title}", ":PROPERTIES:", f":CAPTURED: {_org_timestamp(capture.received_at)}", ":END:"]
     if capture.body:
         lines.extend(_escape_body_line(line) for line in capture.body.split("\n"))
     lines.extend(artifact.org_link for artifact in capture.artifacts)
